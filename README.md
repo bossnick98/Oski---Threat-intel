@@ -16,7 +16,7 @@ From VirusTotal we have obtained the following information:
 
 - Threat categories trojan, ransomware
 
--  	http://171.22.28.221/5c06c05b7b34e8e6.php this is the first URL that the malware tries to contact with C2 control
+-  	http://171[.]22[.]28[.]221/5c06c05b7b34e8e6.php this is the first URL that the malware tries to contact with C2 control
 
 Once infected the system,the first library that the malware requests post-infection is sqlite3.dll. 
 
