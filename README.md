@@ -26,12 +26,30 @@ From the report, we have a major picture about how the malware act inside the sy
 
 It use this RC4 5329514621441247975720749009 key to decrypt its base64-encoded string
 
-Ant.run full report gives also the MITRE technique used by the malware
+Any.run full report gives also the MITRE technique used by the malware
 
 <img width="1337" height="522" alt="B" src="https://github.com/user-attachments/assets/8d08574e-13d5-4b00-9958-8189d1e41be8" />
 
+The VPN.exe file is used to acquire credentials from web browsers by reading files specific to the target browser. 
 
+After the exfiltration of data, the malware delete all the dll files.
 
+"C:\Windows\system32\cmd.exe" /c timeout /t 5 & del /f /q "C:\Users\admin\AppData\Local\Temp\VPN.exe" & del "C:\ProgramData\*.dll"" & exit
 
+This command launches the Windows command prompt to perform a sequence of actions: it waits for 5 seconds, then forcibly and quietly deletes a file named VPN.exe from the user's temporary folder, followed by deleting all .dll files located in C:\ProgramData\. Finally, it closes the command prompt. This behavior suggests potential malicious intent, as it removes files without confirmation, particularly DLLs in a system directory, which can disrupt software or hide traces of malware activity.
+
+Summary:
+
+Once installed on the target device, the malware performs anti-analysis checks to ensure it is not running in a sandbox or virtual environment. After loading Windows API functions and establishing a connection with the C2 server, it begins communication via POST requests, awaiting further configuration commands. The malware then starts collecting data from browsers, extensions, and applications by executing its grabber component to exfiltrate all files to the C2 server. Once the operation is complete, it automatically deletes itself from the device to avoid detection.
+
+Mitigation:
+
+Regularly ensure your security software is up to date.
+
+Avoid downloading and installing software from unofficial third-party sources.
+
+Never open links or attachments from unknown sources
+
+Note: Activity on CyberDefenders, all rights reserved.
 
 
